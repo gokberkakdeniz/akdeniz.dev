@@ -1,0 +1,101 @@
+---
+layout: default
+title: Licenses
+icons:
+  - names:
+    - chevron-left
+    - chevron-right
+    - code
+    - cube
+    - heart
+    - home
+    - link
+    - moon
+    - photograph
+    - sun
+    - user
+    website: https://heroicons.com/
+    name: heroicons.com
+    license: MIT License
+  - names:
+    - copyright
+    website: https://material.io/resources/icons
+    name: material.io
+    license: Apache-2.0 License 
+  - names:
+    - github
+    - gitlab
+    - linkedin
+    - stackoverflow
+    website: https://simpleicons.org/
+    name: simpleicons.org
+    license: CC0-1.0 License
+techs:
+  - name: Eleventy
+    url: https://www.11ty.dev/
+  - name: Nunjucks
+    url: https://mozilla.github.io/nunjucks/
+  - name: Tailwind CSS
+    url: https://tailwindcss.com/
+fonts:
+  - name: Inter
+    url: https://github.com/rsms/inter/
+    license: OFL-1.1 License
+  - name: Zilla Slab
+    url: https://github.com/mozilla/zilla-slab
+    license: OFL-1.1 License
+---
+<div class="p-2">
+  <p>
+    The blog posts are licensed under <a href="https://creativecommons.org/licenses/by/4.0/" class="underline">CC BY 4.0</a>.
+    <br/>
+    The visuals in photography and generative art section are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="underline">CC BY-NC-SA 4.0</a>.
+    <br/>
+    <br/>
+    {% for icon in icons %}
+      The
+      {% for name in icon.names -%}
+        <span class="font-mono bg-secondary rounded-sm px-0.5">{{ name }}</span>
+        {%- if not loop.last -%}
+          <span>,&nbsp;</span>
+        {%- endif -%}
+      {% endfor %}
+      {{ "icon is" if icon.names.length == 1 else "icons are" }} distributed with <i>{{ icon.license }}</i> by <a href="{{ icon.website }}" class="underline">{{ icon.name }}</a>.
+      <br/>
+    {% endfor %}
+
+    <br />
+    
+    This website uses
+    {% for font in fonts %}
+      {%- if loop.first -%}
+        <a href="{{ font.url }}" class="underline">{{ font.name }}</a> (<i>{{ font.license }}</i>)
+      {%- elif loop.last -%}
+        <span>{{"," if loop.length > 2 }} and</span>
+        <a href="{{ font.url }}" class="underline">{{ font.name }}</a> (<i>{{ font.license }}</i>)
+      {%- else -%}
+        <span>,</span>
+        <a href="{{ font.url }}" class="underline">{{ font.name }}</a> (<i>{{ font.license }}</i>)
+      {%- endif -%}
+    {% endfor %}
+    fonts.
+
+    <br />
+    <br />
+
+    This website is built using
+    {% for tech in techs %}
+      {%- if loop.first -%}
+        <a href="{{ tech.url }}" class="underline">{{ tech.name }}</a>
+      {%- elif loop.last -%}
+        <span>, and</span>
+        <a href="{{ tech.url }}" class="underline">{{ tech.name }}</a>
+      {%- else -%}
+        <span>,</span>
+        <a href="{{ tech.url }}" class="underline">{{ tech.name }}</a>
+      {%- endif -%}
+    {% endfor %}
+    and published with <a href="https://vercel.com/" class="underline">Vercel</a>.
+
+  </p>
+</div>

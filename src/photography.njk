@@ -1,0 +1,37 @@
+---
+layout: default
+title: Photography
+photos:
+  - src: /images/photography/P_20201223_094932.jpg
+    width: 1
+    title: A water droplet and wave
+  - src: /images/photography/P_20201223_094612.jpg
+    width: 1
+    title: "Hot water stream (probably) where Tatar River and Gulbahce Bay confluxes"
+  - src: /images/photography/P_20201015_115354.jpg
+    width: 1
+    title: "A boat in Tatar River"
+  - src: /images/photography/P_20200930_082520.jpg
+    width: 1
+    title: "Sea beans in near Gülbahçe Port"
+  - src: /images/photography/P_20200930_084823_SRES.jpg
+    width: 2
+    title: "Wave refraction in Gülbahçe Bay"
+---
+<div class="mb-4">
+  <p>The photos I took with the Asus ZenFone 5Z when I went for a walk.</p>
+</div>
+<div class="flex flex-wrap -mx-1 overflow-hidden">
+  {% for photo in photos %}
+    {% set width = "md:w-1/2 lg:w-1/3 xl:w-1/3" %}
+    {% if photo.width == 2 %}
+      {% set width = "md:w-full lg:w-2/3 xl:w-2/3" %}
+    {% elif photo.width == 3 %}
+      {% set width = "md:w-full" %}
+    {% endif %}
+
+    <div class="my-1 px-1 w-full overflow-hidden {{ width }}">
+      <img src="{{ photo.src }}" class="border border-dotted border-accent" title="{{ photo.title }}"/>
+    </div>
+  {% endfor %}
+</div>

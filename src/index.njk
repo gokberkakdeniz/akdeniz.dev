@@ -1,0 +1,38 @@
+---
+layout: default
+title: Home
+navbar: true
+---
+{% include "components/me.njk" %}
+<div class="text-center">
+  <span>🚧</span>
+  <br/>
+  <span class="font-serif uppercase bg-yellow-300 px-1 py-0.5 text-black rounded-sm">Under construction</span>
+</div>
+<div class="p-2">
+  <ul>
+    {% set length = collections.post.length if collections.post.length < 5 else 
+      5 %}
+    {% set posts = collections.post | reverse %}
+    {% for index in range(0, length) %}
+      {% set post = posts[index] %}
+      <li class="hover:bg-secondary border border-dotted border-transparent hover:border-accent p-2">
+        <a href="{{post.url}}">
+          <div class="flex flex-row">
+            <div class="flex-grow">
+              <b>{{post.data.title}}</b>
+            </div>
+            <div class="flex-none">
+              <b>{{post.data.date | dateFormat}}</b>
+            </div>
+          </div>
+          <p>{{ post.data.description }}</p>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <div class="text-center mt-4 font-bold">
+    <a href="/blog" class="px-2 py-1 hover:text-accent">
+      &lt;show all&gt;
+    </a>
+    <div></div>

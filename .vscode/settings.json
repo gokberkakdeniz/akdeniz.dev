@@ -1,0 +1,5 @@
+{
+  "editor.tabSize": 2,
+  "css.customData": [".vscode/css_custom_data.json"],
+  "emmet.includeLanguages": { "nunjucks": "html" }
+}

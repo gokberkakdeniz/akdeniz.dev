@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Zilla+Slab:wght@500;600;700&display=swap");
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.dark {
+  --color-bg-primary: #2d3748;
+  --color-bg-secondary: #283141;
+  --color-bg-terniary: #141c2b;
+  --color-text-primary: #f7fafc;
+  --color-text-secondary: #e2e8f0;
+  --color-text-accent: #fcd34d;
+  --color-text-accent-secondary: #F59E0B;
+}
+
+.light {
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #fafafa;
+  --color-bg-terniary: #ebebeb;
+  --color-text-primary: #2d3748;
+  --color-text-secondary: #4a5568;
+  --color-text-accent: #255d99;
+  --color-text-accent-secondary: #4aa2ff;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-heading;
+}
+
+@layer utilities {
+  .no-spinner::-webkit-inner-spin-button,
+  .no-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .no-spinner {
+    -moz-appearance: textfield;
+  }
+
+  .no-arrow {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  @variants hover, focus {
+    .text-accent-secondary {
+      color: var(--color-text-accent-secondary);
+    }
+
+    .bg-terniary {
+      background-color: var(--color-bg-terniary);
+    }
+
+    .border-accent {
+      border-color: var(--color-text-accent);
+    }
+
+    .border-accent-secondary {
+      border-color: var(--color-text-accent-secondary);
+    }
+    
+    .bg-accent {
+      background-color: var(--color-text-accent);
+    }
+
+    .bg-accent-secondary {
+      background-color: var(--color-text-accent-secondary);
+    }
+  }
+}

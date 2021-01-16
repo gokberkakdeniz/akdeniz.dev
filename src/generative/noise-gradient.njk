@@ -1,0 +1,33 @@
+---
+title: Noise Gradient
+description: My first experience with P5.js and HTML canvas
+date: 2021-03-30
+scripts:
+  - https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js
+  - /js/noise-gradient.js
+---
+
+<div style="max-width: 300px;">
+  <label for="dominant_color">Dominant color</label>
+  <select name="dominant_color" id="dominant_color" class="my-1 w-full bg-secondary border border-dashed border-accent outline-none focus:border-accent-secondary no-arrow">
+    <option value="r">Red</option>
+    <option value="g">Green</option>
+    <option value="b">Blue</option>
+  </select>
+
+  <br/>
+
+  <label for="range_start">Start</label>
+  <input type="number" name="range_start" id="range_start" min="0" max="255" value="175" class="h- my-1 w-full px-1 bg-secondary border border-dashed border-accent outline-none focus:border-accent-secondary no-spinner">
+
+  <br/>
+
+  <label for="range_end">End</label>
+  <input type="number" name="range_end" id="range_end" min="0" max="255" value="200" class="h-8 my-1 w-full px-1 bg-secondary border border-dashed border-accent outline-none focus:border-accent-secondary no-spinner">
+
+  <br/>
+
+  <div id="sketch-holder" class="my-4 bg-secondary" style="width:300; height:300;"></div>
+
+  <button onclick="redraw();" class="h-8 px-2 w-full border border-dotted border-accent focus:outline-none focus:border-accent-secondary bg-terniary">Render</button>
+</div>
