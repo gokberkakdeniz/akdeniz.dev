@@ -50,6 +50,15 @@ h6 {
     appearance: none;
   }
 
+  .sideline::after, .sideline::before {
+    content: '';
+    width: 1.5rem;
+    vertical-align: middle;
+    display: inline-block;
+    margin: 0.5rem;
+    border-bottom: 2px solid;
+  }
+
   @variants hover, focus {
     .text-accent-secondary {
       color: var(--color-text-accent-secondary);
