@@ -1,7 +1,7 @@
 ---
-title: IZTECH IEEE ComSoc C Course 2019-2020 - Terimler ve Merhaba Dünya (Turkish)
+title: "C Programlama Dili: Terimler ve Merhaba Dünya (Turkish)"
 date: 2019-11-20
-description: C Course 2019-2020 - Terimler ve Merhaba Dünya (Turkish)
+description: IZTECH IEEE ComSoc C Kursu 2019-2020 - Terimler ve Merhaba Dünya
 ---
 
 !["Merhaba, dünya" bilgisayar programı (Brian Kernighan)](https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Hello_World_Brian_Kernighan_1978.jpg/440px-Hello_World_Brian_Kernighan_1978.jpg)
