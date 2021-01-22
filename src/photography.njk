@@ -31,7 +31,7 @@ photos:
     {% endif %}
 
     <div class="my-1 px-1 w-full overflow-hidden {{ width }}">
-      <img src="{{ photo.src }}" class="border border-dotted border-accent" title="{{ photo.title }}"/>
+      <img src="{{ photo.src }}" class="h-full object-cover border border-dotted border-accent" title="{{ photo.title }}"/>
     </div>
   {% endfor %}
 </div>
