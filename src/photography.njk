@@ -41,7 +41,7 @@ photos:
     <div class="my-1 px-1 w-full overflow-hidden {{ width }}">
       <a target="_blank" href="{{ photo.url }}">
         <picture title="{{ photo.title }}" class="intrinsic bg-terniary dark:bg-secondary {{ ratio }}">
-          <img src="{{ photo.src }}" class="intrinsic-item object-cover border border-dotted border-accent" />
+          <img src="{{ photo.src }}" alt="{{ photo.title }}" class="intrinsic-item object-cover border border-dotted border-accent" />
         </picture>
       </a>
     </div>
