@@ -1,5 +1,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Gökberk Akdeniz">
+
+{% if keywords -%}
+  <meta name="keywords" content="{{ keywords }}" />
+{%- endif -%}
+
+{% if description -%}
+  <meta name="description" content="{{ description }}" />
+{%- endif %}
+
+<meta name="msapplication-TileColor" content="#FFFFFF">
+<meta name="msapplication-TileImage" content="/favicon-144.png">
+<meta name="msapplication-config" content="/browserconfig.xml">
 
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="icon" sizes="16x16 32x32 64x64" href="/favicon.ico">
@@ -18,20 +31,19 @@
 <link rel="apple-touch-icon" sizes="76x76" href="/favicon-76.png">
 <link rel="apple-touch-icon" sizes="152x152" href="/favicon-152.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
-<meta name="msapplication-TileColor" content="#FFFFFF">
-<meta name="msapplication-TileImage" content="/favicon-144.png">
-<meta name="msapplication-config" content="/browserconfig.xml">
 
-<link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
+{% for href in stylesheets -%}
+  <link href="{{ href }}" rel="stylesheet">
+{%- endfor %}
 
-{% for src in scripts %}
+{% for src in scripts -%}
   <script src="{{ src }}"></script>
-{% endfor %}
+{%- endfor %}
 
 <title>
-  {% if title %}
+  {%- if title -%}
     {{ title }} - {{ site.title }}
-  {% else %}
+  {%- else -%}
     {{ site.title }}
-  {% endif %}
+  {%- endif %}
 </title>
