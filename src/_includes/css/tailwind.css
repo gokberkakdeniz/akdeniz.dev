@@ -96,6 +96,10 @@ h6 {
       background-color: var(--color-bg-terniary);
     }
 
+    .border-primary {
+      border-color: var(--color-text-primary);
+    }
+
     .border-accent {
       border-color: var(--color-text-accent);
     }

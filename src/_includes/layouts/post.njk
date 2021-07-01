@@ -4,7 +4,25 @@ title: Blog
 stylesheets:
   - https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css
 ---
-<article class="prose dark:prose-light">
-  <h1>{{ title }}</h1>
-  {{ content | safe }}
+<article class="prose dark:prose-light max-w-none">
+
+  <div class="divide-solid divide-y-2">
+    <div>
+      <h1>{{ title }}</h1>
+    </div>
+    <div class="p-2 flex flex-row justify-between gap-2">
+      <div class="flex-shrink-0">
+        <span class="text-xs font-bold px-1 py-0.5 font-mono bg-terniary border border-dotted rounded-md border-primary">{{ date | dateFormat }}</span>
+      </div>
+      <div class="text-right">
+        {% for tag in tagz %}
+          <span class="text-xs px-1 py-0.5 font-mono bg-terniary border border-dotted rounded-md border-primary">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div>
+      {{ content | safe }}
+    </div>
+  </div>
+
 </article>
