@@ -1,7 +1,7 @@
 ---
-title: Integrate MJML and Thymeleaf using Gulp and Maven in Spring Boot
+title: Integrate MJML and Thymeleaf in Spring Boot
 date: 2021-07-01
-description: Integrate MJML and Thymeleaf using Gulp and Maven in Spring Boot
+description: Integrating MJML and Thymeleaf using Gulp and Maven in Spring Boot
 tagz:
   - spring boot
   - mjml
