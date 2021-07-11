@@ -1,2 +1,3 @@
 User-agent: *
-Disallow: /portfolio
+Disallow: /blog/markdown-test
+Disallow: /blog/c-merhaba-dunya
