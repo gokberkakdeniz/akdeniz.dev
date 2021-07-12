@@ -9,7 +9,8 @@ tagz:
 
 The number of resource bundles increases when developing multi-language APIs in Spring. Adding a new resource bundle to the **Bean** each time can be overwhelming.
 
-Although `ReloadableResourceBundleMessageSource.setBasenames` does not support patterns, the problem can be solved using `org.springframework.core.io.support.PathMatchingResourcePatternResolver`.
+Although <span style="word-break: break-all;">**ReloadableResourceBundleMessageSource.setBasenames**</span> does not support patterns, 
+the problem can be solved using <span style="word-break: break-all;">**org.springframework.core.io.support.PathMatchingResourcePatternResolver**</span>.
 
 ```java
 @Bean
