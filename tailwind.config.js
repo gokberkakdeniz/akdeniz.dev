@@ -36,6 +36,13 @@ module.exports = {
         cyan: colors.cyan,
       },
       typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            pre: null,
+            code: null,
+            "pre code": null
+          }
+        },
         light: {
           css: [
             {
@@ -77,15 +84,8 @@ module.exports = {
               "figure figcaption": {
                 color: theme("colors.gray.400"),
               },
-              code: {
-                color: theme("colors.white"),
-              },
               "a code": {
                 color: theme("colors.white"),
-              },
-              pre: {
-                color: theme("colors.gray.200"),
-                backgroundColor: theme("colors.gray.800"),
               },
               thead: {
                 color: theme("colors.white"),
