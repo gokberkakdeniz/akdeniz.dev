@@ -1,11 +1,11 @@
 ---
 layout: default
 title: Blog
-stylesheets:
-  - https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css
+scripts:
+  - /js/post.js
 ---
+<link rel="stylesheet" href="" id="prism">
 <article class="prose dark:prose-light max-w-none">
-
   <div class="divide-solid divide-y-2">
     <div>
       <h1>{{ title }}</h1>
@@ -24,5 +24,7 @@ stylesheets:
       {{ content | safe }}
     </div>
   </div>
-
+  <div id="comments"></div>
+  <script>setupPost()</script>
+  <noscript>JavaScript is required to show comments.</noscript>
 </article>

@@ -6,9 +6,8 @@ function waitSunAndMoon(callback) {
   return callback();
 };
 
-
 function getTheme() {
-  if (typeof window !== "undefined") {
+  if (window) {
     if (window.localStorage) {
       const theme = localStorage.getItem("theme");
 
