@@ -32,7 +32,7 @@ module.exports = {
         sans: ["Inter", "sans-serif"],
       },
       colors: {
-        "light-blue": colors.lightBlue,
+        "light-blue": colors.sky,
         cyan: colors.cyan,
       },
       typography: (theme) => ({

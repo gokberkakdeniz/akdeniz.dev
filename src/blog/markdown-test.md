@@ -2,7 +2,7 @@
 title: Markdown sample
 description: A markdown sample to see default element styles
 date: 2021-03-30
-tags: blog-hidden
+hidden: true
 ---
 
 # h1 Heading 8-)

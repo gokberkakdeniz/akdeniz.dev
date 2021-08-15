@@ -8,10 +8,8 @@ navbar: true
 {% include "components/me.njk" %}
 <div class="p-2">
   <ul>
-    {% set length = collections.post.length if collections.post.length < 5 else 
-      5 %}
-    {% set posts = collections.post | reverse %}
-    {% for index in range(0, length) %}
+    {% set posts = collections.post | rejectmattr("data", "hidden") | reverse %}
+    {% for index in range(0, clamp(0, 5, posts.length)) %}
       {% set post = posts[index] %}
       <li class="hover:bg-secondary border border-dotted border-transparent hover:border-accent p-2">
         <a href="{{post.url}}">
