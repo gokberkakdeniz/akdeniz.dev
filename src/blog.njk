@@ -6,10 +6,9 @@
   keywords: "blog, software engineer, izmir, computer engineer, programming",
   pagination: {
     data: "collections.post",
-    reverse: "true",
     size: "10",
     alias: "posts",
-    before: (array) => array.filter(item => !item.data.hidden)
+    before: (array) => array.filter(item => !item.data.hidden).reverse()
   }
 }
 ---
