@@ -24,17 +24,17 @@
     "postcss": "postcss"
   },
   "devDependencies": {
-    "@11ty/eleventy": "git+https://github.com/11ty/eleventy",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^3.1.2",
-    "@tailwindcss/typography": "^0.4.1",
-    "autoprefixer": "^10.3.1",
-    "cssnano": "^5.0.7",
-    "dayjs": "^1.10.6",
+    "@11ty/eleventy": "^1.0.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
+    "@tailwindcss/typography": "^0.5.1",
+    "autoprefixer": "^10.4.2",
+    "cssnano": "^5.0.16",
+    "dayjs": "^1.10.7",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.3.6",
+    "postcss": "^8.4.6",
     "postcss-cli": "^8.3.1",
-    "prettier": "^2.3.2",
-    "ramda": "^0.27.1",
-    "tailwindcss": "^2.2.7"
+    "prettier": "^2.5.1",
+    "ramda": "^0.27.2",
+    "tailwindcss": "^3.0.18"
   }
 }
