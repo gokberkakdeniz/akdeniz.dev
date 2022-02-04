@@ -4,7 +4,7 @@
   "main": "index.js",
   "repository": "git@github.com:gokberkakdeniz/akdeniz.dev.git",
   "author": "Gökberk AKDENİZ <gokberkakdeniz@hotmail.com>",
-  "license": "SEE LICENSE IN LICENSE-website",
+  "license": "SEE LICENSE IN LICENSE",
   "private": "true",
   "scripts": {
     "serve-html": "ELEVENTY_ENV=dev eleventy --serve",
