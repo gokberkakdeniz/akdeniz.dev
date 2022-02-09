@@ -8,29 +8,29 @@ The website is built using [eleventy](https://www.11ty.dev/) static site generat
 ## Usage
 
 - Clone repository,
-- Install dependencies using `yarn install`,
-- Start development server using `yarn start`.
+- Install dependencies using `pnpm install`,
+- Start development server using `pnpm start`.
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `pnpm start`
 Runs the app in the development mode.
 
-### `yarn build`
+### `pnpm build`
 Builds the app in the development mode.
 
 Build folder: `dist`
 
-### `yarn build:prod`
+### `pnpm build:prod`
 Builds the app in the production mode.
 
 Build folder: `dist`
 
-### `yarn clean`
+### `pnpm clean`
 Cleans build folder.
 
 ## License
 
-See [license](/LICENSE-website) for the source code of the website, [license](/LICENSE-art) for photography and generative art section, and [license](/LICENSE-posts) for posts.
+See [license](/LICENSE) for the source code of the website, [license](/LICENSE-art) for photography and generative art section, and [license](/LICENSE-posts) for posts.
