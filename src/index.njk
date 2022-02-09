@@ -5,7 +5,7 @@ keywords: "gökberk akdeniz, software engineer, computer engineer, izmir, turkey
 description: "Personal website of Gökberk Akdeniz who is a Software Engineer in İzmir"
 navbar: true
 ---
-{% include "components/me.njk" %}
+{% include "partials/me.njk" %}
 <div class="p-2">
   <ul>
     {% set posts = collections.post | rejectmattr("data", "hidden") | reverse %}
