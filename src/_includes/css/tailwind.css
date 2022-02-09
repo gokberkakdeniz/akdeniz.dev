@@ -87,33 +87,31 @@ h6 {
     padding-top: calc(33.33333333% - 0.25rem);
   }
 
-  @variants hover, focus {
-    .text-accent-secondary {
-      color: var(--color-text-accent-secondary);
-    }
+  .text-accent-secondary {
+    color: var(--color-text-accent-secondary);
+  }
 
-    .bg-terniary {
-      background-color: var(--color-bg-terniary);
-    }
+  .bg-terniary {
+    background-color: var(--color-bg-terniary);
+  }
 
-    .border-primary {
-      border-color: var(--color-text-primary);
-    }
+  .border-primary {
+    border-color: var(--color-text-primary);
+  }
 
-    .border-accent {
-      border-color: var(--color-text-accent);
-    }
+  .border-accent {
+    border-color: var(--color-text-accent);
+  }
 
-    .border-accent-secondary {
-      border-color: var(--color-text-accent-secondary);
-    }
-    
-    .bg-accent {
-      background-color: var(--color-text-accent);
-    }
+  .border-accent-secondary {
+    border-color: var(--color-text-accent-secondary);
+  }
 
-    .bg-accent-secondary {
-      background-color: var(--color-text-accent-secondary);
-    }
+  .bg-accent {
+    background-color: var(--color-text-accent);
+  }
+
+  .bg-accent-secondary {
+    background-color: var(--color-text-accent-secondary);
   }
 }
