@@ -5,25 +5,12 @@ keywords: "gökberk akdeniz, software engineer, computer engineer, izmir, turkey
 description: "Personal website of Gökberk Akdeniz who is a Software Engineer in İzmir"
 navbar: true
 ---
+{% from "macros/post.njk" import PostListItem %}
 {% include "partials/me.njk" %}
 <div class="p-2">
   <ul>
-    {% set posts = collections.post | rejectmattr("data", "hidden") | reverse %}
-    {% for index in range(0, clamp(0, 5, posts.length)) %}
-      {% set post = posts[index] %}
-      <li class="hover:bg-secondary border border-dotted border-transparent hover:border-accent p-2">
-        <a href="{{post.url}}">
-          <div class="flex flex-row">
-            <div class="flex-grow">
-              <b>{{post.data.title}}</b>
-            </div>
-            <div class="flex-none">
-              <b>{{post.data.date | dateFormat}}</b>
-            </div>
-          </div>
-          <p>{{ post.data.description }}</p>
-        </a>
-      </li>
+    {% for post in collections.post | rejectmattr("data", "hidden") | reverse | slice(5) %}
+      {{ PostListItem(title=post.data.title, description=post.data.description, date=post.data.date, url=post.url) }}
     {% endfor %}
   </ul>
   <div class="text-center mt-4 font-bold">

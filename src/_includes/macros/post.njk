@@ -1,0 +1,41 @@
+{% macro PostListItem(title, description, date, url) %}
+  <li class="hover:bg-secondary border border-dotted border-transparent hover:border-accent p-2">
+    <a href="{{ url }}">
+      <div class="flex flex-row">
+        <div class="flex-grow">
+          <b class="font-serif">{{ title }}</b>
+        </div>
+        <div class="flex-none">
+          <b>{{ date | dateFormat }}</b>
+        </div>
+      </div>
+      <p>{{ description }}</p>
+    </a>
+  </li>
+{% endmacro %}
+
+{% macro PostListNavigation(pagination) %}
+  <div class="flex flex-row justify-between">
+    <div class="py-1 px-2 hover:text-accent">
+      {% if pagination.href.previous %}
+        <a href="{{ pagination.href.previous }}">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 inline-block">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          Previous
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="py-1 px-2 hover:text-accent">
+      {% if pagination.href.next %}
+        <a href="{{ pagination.href.next }}">
+          Next
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 inline-block">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+{% endmacro %}
