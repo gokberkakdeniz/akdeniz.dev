@@ -98,3 +98,6 @@ typings/
 
 # 11ty
 dist/
+
+# mac
+.DS_store
