@@ -1,0 +1,30 @@
+{
+  "redirects": [
+    {
+      "source": "/experiments/:project",
+      "destination": "/experiments/:project/"
+    },
+    {
+      "source": "/projects/:project",
+      "destination": "/projects/:project/"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/projects/soapify/",
+      "destination": "https://soapify-akdeniz-dev.vercel.app/index.html"
+    },
+    {
+      "source": "/projects/soapify/:match*",
+      "destination": "https://soapify-akdeniz-dev.vercel.app/:match*"
+    },
+    {
+      "source": "/experiments/conflux/",
+      "destination": "https://conflux-demo.vercel.app/index.html"
+    },
+    {
+      "source": "/experiments/conflux/assets/:match*",
+      "destination": "https://conflux-demo.vercel.app/assets/:match*"
+    }
+  ]
+}
