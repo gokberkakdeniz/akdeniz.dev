@@ -3,7 +3,21 @@ layout: default
 title: Portfolio
 description: The portfolio of Gökberk Akdeniz
 keywords: portfolio, about, cv, resume, software engineer, izmir, turkey, computer engineer, developer, fullstack, backend, frontend
+company:
+  name: Jotform
+  url: https://www.jotform.com/
 ---
+{% macro Highlighted(text, class = "") %}
+  <span class="bg-terniary rounded-sm px-1 py-0.5 {{ class }}">{{ text }}</span>
+{% endmacro %}
+
+{% macro ExperienceTitle(companyName, startDate, endDate) %}
+  <div class="flex justify-between">
+    <h2 class="text-xl font-bold uppercase">{{ companyName }}</h2>
+    <h2 class="text-xl font-bold">{{ startDate }} - {{ endDate }}</h2>
+  </div>
+{% endmacro %}
+
 <div class="flex flex-col space-y-4">
   <div class="mx-auto">
     <img src="/images/me.jpg" alt="my picture" class="rounded-full border-4 border-solid border-accent mx-auto my-4"/>
@@ -13,30 +27,34 @@ keywords: portfolio, about, cv, resume, software engineer, izmir, turkey, comput
         <div class="mx-auto" style="width: 300px;"></div>
         <div class="mx-auto" style="width: 300px;"></div>
       </div>
-      <div class="mx-auto">Computer engineering student, Software Developer in İzmir</div>
+      <div class="mx-auto">Software Engineer in İzmir, Turkey.</div>
     </div>
   </div>
   <div class="text-center font-semibold text-2xl font-heading uppercase">
     <h1 class="sideline">About Me</h1>
   </div>
-  <div class="flex flex-col lg:flex-row space-x-4">
+  <div class="flex flex-col lg:flex-row lg:space-x-4">
     <div class="w-full flex flex-col space-y-2">
       <p>
-        I'm a fourth year computer engineering student at IZTECH. 
-        I'm also a Software Developer located in İzmir.
-        I work as a Full Stack Developer.
+        I'm Software Engineer located in İzmir, Turkey.
+        <br />
+        I work as a {{ Highlighted("Full Stack Developer") }} at <a class="font-bold hover:underline" href="{{ company.url }}">{{ company.name }}</a>.
+      </p>
+      <p>
+        I graduated from <a href="https://en.iyte.edu.tr/" title="Izmir Institute of Technology" class="font-bold hover:underline">IZTECH</a>
+        with B.Sc. in Computer Engineering as {{ Highlighted("the highest-ranked student in the Institute") }} in 2017 (GPA: 3.86).
       </p>
       <p>
         I also spend my outside time experimenting with new technologies. 
       </p>
-      <p>
+      {# <p>
         I've taught C programming language to newcomers within IEEE IZTECH for 4 weeks. 
         I prepared
         <a href="https://iztech-comsoc.github.io/" class="font-bold hover:underline">materials</a>
         to make them understand easier.
-      </p>
+      </p> #}
       <p>
-        See <a href="https://www.linkedin.com/in/gokberkakdeniz/" class="font-bold hover:underline">my LinkedIn profile</a> for more details.
+        See my <a href="https://www.linkedin.com/in/gokberkakdeniz/" class="font-bold hover:underline">LinkedIn</a> profile for more details.
       </p>
     </div>
     <div class="w-full flex flex-col space-y-2">
@@ -45,13 +63,13 @@ keywords: portfolio, about, cv, resume, software engineer, izmir, turkey, comput
         <li>Had a solid theoric background</li>
         <li>Linux and open-source enthusiast</li>
         <li>Curious to understand how and why things work</li>
-        <li>
+        {# <li>
           Awarded second place with my <a href="https://github.com/gokberkakdeniz/hack4art-2019-redesign" class="font-bold hover:underline">teammates</a>
           in <a href="https://www.hack4art.com/" class="font-bold hover:underline">Hack4art</a>
         </li>
         <li>Led the technical team of <a href="http://codeofduty.iyte.edu.tr/" class="font-bold hover:underline">Code of Duty 2020</a>. 
           Prepared questions, contest platforms and made a presentation to companies interested in sponsorship.
-        </li>
+        </li> #}
       </ul>
     </div>
   </div>
@@ -59,7 +77,7 @@ keywords: portfolio, about, cv, resume, software engineer, izmir, turkey, comput
   <div class="text-center font-semibold text-2xl font-heading uppercase">
     <h1 class="sideline">Interests</h1>
   </div>
-  <div class="flex flex-col lg:flex-row space-x-4">
+  <div class="flex flex-col lg:flex-row lg:space-x-4">
     <div class="w-full flex flex-col space-y-2">
       <h2 class="font-semibold text-xl">My personal interests include:</h2>
 
@@ -95,21 +113,20 @@ keywords: portfolio, about, cv, resume, software engineer, izmir, turkey, comput
       </p>
     </div>
     <div class="w-full flex flex-col space-y-2">
-      <h2 class="text-xl font-bold uppercase">Jotform</h2>
+      {{ ExperienceTitle("Jotform", "Oct 2021", "") }}
       <ul class="list-inside list-disc">
         <!-- TODO --->
+        <li>Junior Fullstack Developer</li>
         <li>Part-time Fullstack Support Engineer</li>
       </ul>
 
-      <h2 class="text-xl font-bold uppercase">Delta Smart Technologies</h2>
+      {{ ExperienceTitle("Delta Smart Technologies", "Jul 2020", "Oct 2021") }}
       <ul class="list-inside list-disc">
         <li>Built rich <a href="https://panel.pincident.app/" title="Example: Pincident Public (under development)" class="font-bold">administrator panels</a>
         using TypeScript, ReactJS, and Redux.</li>
         <li>Maintained ASP.NET C# Web APIs.</li>
         <li>Built serverless notification system with NodeJS using AWS Lambda, EventBridge, and OneSignal.</li>
         <li>Used jest.js to test lambda function, gulp.js to automate deploying to AWS Lambda.</li>
-        <li>Used AWS and Azure.</li>
-        <li>Closely collaborated with backend developer.</li>
         <li>Being part of a scrum team of 5 members.</li>
         <li>Mentoring new trainees to clarify their questions and to make them adapted to the team.</li>
         <li>Wrote bash/python scripts to automate the creation of large amounts of geographic data.</li>
