@@ -6,60 +6,77 @@ keywords: software, programs, projects, computer, github, gitlab, opensource, cl
 ---
 
 <style>
-  .category-collapsed > [data-type="project"] {
-    display: none;
-  }
-
   .chevron-up {
     display: none;
   }
 
-  .category-collapsed .chevron-up {
-    display: block;
+  .chevron-down {
+    display: inline;
   }
 
-  .category-collapsed .chevron-down {
+  details:not([open]) .chevron-up {
+    display: inline;
+  }
+
+  details:not([open]) .chevron-down {
+    display: none;
+  }
+
+  details > summary.list-none::-webkit-details-marker,
+  details > summary.list-none::marker {
     display: none;
   }
 </style>
 
-{% for type, projects in collections.projects | sort(false, true, "template.parsed.dir") | groupby("template.parsed.dir") %}
-  {% set category = "/" + type.split("/").slice(3).join("/") %}
-  <div class="flex flex-1 flex-wrap -mx-1 overflow-hidden" data-category="{{ category }}">
-    {% for project in projects | sort(false, true, "template.parsed.name") %}
-      {% if project.template.parsed.name == ".njk" %}
-        <div 
-          class="my-1 px-1 w-full overflow-hidden category-title"
-          role="button"
-        >
-          <div class="bg-terniary border-b-black p-2 pt-1 rounded-sm pointer-events-none select-none">
-            <div class="flex justify-between text-xl">
-              <h2 class="font-bold">{{ project.data.title }}</h2>
-              <div class="text-accent self-center chevron"></div>
-            </div>
-            {# <h3>{{ project.data.description }}&nbsp;</h3> #}
+<p class="px-1 hidden">
+  Here are some highlighted projects:
+  <br />
+</p>
+
+
+{% for projects in collections.projects | sort(false, true, "template.parsed.name") %}
+  <details open>
+    <summary 
+      class="my-1 px-1 w-full overflow-hidden list-none"
+      role="button"
+    >
+      <div class="bg-terniary border-b-black p-2 pt-1 rounded-sm pointer-events-none select-none">
+        <div class="flex justify-between text-xl">
+          <h2 class="font-bold">{{ projects.data.title }}</h2>
+          <div class="text-accent self-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 chevron-down" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 chevron-up" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+            </svg>
           </div>
         </div>
-      {% else %}
+        {# <h3>{{ projects.data.description }}&nbsp;</h3> #}
+      </div>
+    </summary>
+    <div class="flex flex-1 flex-wrap overflow-hidden">
+      {% for project in projects.data.projects %}
         <div
           class="my-1 px-1 w-full overflow-hidden lg:w-1/2 xl:w-1/2"
           data-type="project"
         >
           <div class="flex flex-col h-full bg-secondary p-2 pt-1 rounded-sm border border-dotted border-accent">
             <div class="font-heading font-bold text-xl">
-              <a href="{{ project.data.urls[0].url }}">
-                {{ project.data.title }}
+              <a href="{{ project.urls[0].url }}">
+                {{ project.title }}
               </a>
             </div>
-            <div class="mt-2 mb-4 flex-grow">{{ project.data.description }}</div>
+            <div class="mt-2 mb-4 flex-grow">{{ project.description }}</div>
             <div class="mb-0.5 flex flex-row justify-between">
               <div>
-                {% for tag in project.data.tagz %}
+                {% for tag in project.tagz %}
                   <span class="px-1 py-0.5 font-mono bg-terniary border border-dotted rounded-md {{ projectTags[tag] }}">{{ tag }}</span>
                 {% endfor %}
               </div>
               <div class="text-accent-secondary">
-                {% for url in project.data.urls %}
+                {% for url in project.urls %}
                 <a href="{{ url.url }}" title="{{ url.title }}">
                   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4 inline">
                     {% if url.url.startsWith('https://github.com') or url.url.startsWith('https://gist.github.com') %}
@@ -86,40 +103,7 @@ keywords: software, programs, projects, computer, github, gitlab, opensource, cl
             </div>
           </div>
         </div>
-      {% endif %}
-    {% endfor %}
-  </div>
+      {% endfor %}
+    </div>
+  </details>
 {% endfor %}
-
-<template id="chevron-down">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 chevron-down" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-  </svg>
-</template>
-
-<template id="chevron-up">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 chevron-up" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
-  </svg>
-</template>
-
-<script type="text/javascript">
-  (() => {
-    const toggleCategory = (event) => {
-      event.target.parentElement.classList.toggle('category-collapsed');
-    };
-
-    const chevronDownIcon = document.getElementById("chevron-down").content.children[0];
-    const chevronUpIcon = document.getElementById("chevron-up").content.children[0];
-
-    document.querySelectorAll(".category-title").forEach(el => {
-      el.role = "button";
-      el.addEventListener("click", toggleCategory);
-
-      el.querySelector(".chevron").append(
-        chevronDownIcon.cloneNode(true),
-        chevronUpIcon.cloneNode(true)
-      );
-    });
-  })();
-</script>
