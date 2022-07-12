@@ -1,8 +1,19 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const prettier = require("prettier");
+const Nunjucks = require("nunjucks");
 const fs = require('fs');
 
-module.exports = function (eleventyConfig) {  
+module.exports = function (eleventyConfig) {
+  const nunjucksEnvironment = new Nunjucks.Environment(
+    new Nunjucks.FileSystemLoader("src/_includes")
+  );
+
+  eleventyConfig.addNunjucksFilter("render", function (input) {
+    return nunjucksEnvironment.renderString(input, this.getVariables())
+  });
+
+  eleventyConfig.setLibrary("njk", nunjucksEnvironment);
+  
   fs.readdirSync("./plugins").forEach(filename => {
     const path = './plugins/' + filename;
     // delete require.cache[require.resolve(path)];
