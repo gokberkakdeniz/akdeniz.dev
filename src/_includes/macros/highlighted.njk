@@ -1,11 +1,11 @@
-{% macro gbHighlighted(props) %}
-  {% set tag = props.as or "span" %}
+{% macro gbHighlighted(props) -%}
+  {%- set tag = props.as or "span" -%}
 
-  {% set attributes -%}
+  {%- set attributes -%}
     {% for attribute, value in props.attributes -%} 
       {{attribute}}="{{value}}"
     {%- endfor %}
-  {%- endset %}
+  {%- endset -%}
 
   <{{ tag }} 
     class="bg-terniary rounded-sm px-1 py-0.5 {{ props.class or "" }}" {{ attributes | safe }}
@@ -16,4 +16,4 @@
       {{ props.html | safe }}
     {%- endif -%}
   </{{ tag }}>
-{% endmacro %}
+{%- endmacro %}

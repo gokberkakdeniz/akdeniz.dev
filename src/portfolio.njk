@@ -9,6 +9,12 @@ company:
 experiences:
   - company: Jotform
     start: "Oct 2021"
+    tags:
+      - react
+      - redux
+      - redux-saga
+      - php
+      - mysql
     positions:
       - title: "Junior Fullstack Developer"
         start: "Aug 2022"
@@ -23,31 +29,47 @@ experiences:
   - company: Delta Smart Technologies
     start: "Jul 2020"
     end: "Oct 2021"
+    tags:
+      - react
+      - redux
+      - redux-saga
+      - typescript
+      - java
+      - spring
+      - aws
+      - mariadb
     positions:
       - title: "Lead Developer"
         type: Part-time
         start: "Jun 2021"
         end: "Oct 2021"
+        descriptions:
+          - text: Lead 3-member team (mobile, front-end, and back-end developer).
+          - text: Designed the architecture and infrastructure of car park management software for IZELMAN.
+          - text: Built API using Spring Boot, MariaDB, Hibernate, and Flyway.
+          - text: Built frontend with TypeScript, ReactJS, Redux, and Redux-Saga.
       - title: "Full Stack Developer"
         type: Part-time
         start: "Feb 2021"
         end: "Jun 2021"
+        descriptions:
+          - text: 'Maintained ASP.NET C# Web APIs.'
+          - text:  >-
+              Built serverless notification system with NodeJS using AWS Lambda, EventBridge, and OneSignal. 
+              Used jest.js for testing, gulp.js for bundling.
+          - text: 'Wrote bash/python scripts to automate the creation of large amounts of geographic data.'
       - title: "Frontend Developer"
         type: Part-time
         start: "Oct 2020"
         end: "Feb 2021"
+        underline: true
       - title: "Frontend Developer"
         type: Intern
         start: "Jul 2020"
         end: "Oct 2020"
-    descriptions:
-      - text: 'Built rich administrator panels using TypeScript, ReactJS, and Redux.'
-      - text: 'Maintained ASP.NET C# Web APIs.'
-      - text: 'Built serverless notification system with NodeJS using AWS Lambda, EventBridge, and OneSignal.'
-      - text: 'Used jest.js to test lambda function, gulp.js to automate deploying to AWS Lambda.'
-      - text: 'Being part of a scrum team of 5 members.'
-      - text: 'Mentoring new trainees to clarify their questions and to make them adapted to the team.'
-      - text: 'Wrote bash/python scripts to automate the creation of large amounts of geographic data.'
+        descriptions:
+          - html: 'Developed rich administrator panels using TypeScript, ReactJS, Redux, and Redux-Saga.'
+          - text: 'Being part of a scrum team of 5 members.'
   - company: Outside Work
     descriptions:
       - html: 'Ported and maintained <a href="https://addons.mozilla.org/en-US/firefox/addon/tureng-anlik-ceviri/" class="font-bold hover:underline">Tureng Anlık Çeviri</a> (1200 users and 4.5 stars) add-on to Mozilla Firefox from Google Chrome.'
@@ -79,7 +101,7 @@ experiences:
 
 {% macro gbExperiencePositionTitle(props) %}
   <div class="inline-block w-full font-bold">
-    <h3 class="inline float-left">
+    <h3 class="inline float-left {{ "border-b border-current" if props.underline }}">
       {{ props.title }}
       {%- if props.type -%}
         , <span class="italic font-normal">{{ props.type }}</span>
@@ -90,12 +112,14 @@ experiences:
 {% endmacro %}
 
 {% macro gbExperienceDescriptionItem(props) %}
-  <li class="">
-    {% if props.text %}
+  <li>
+    {%- if props.text -%}
       {{ props.text }}
-    {% elif props.html %}
+    {%- elif props.html -%}
       {{ props.html | safe }}
-    {% endif %}
+    {%- elif props.render -%}
+      {{ props.render | render | safe }}
+    {%- endif -%}
   </li>
 {% endmacro %}
 
@@ -204,9 +228,11 @@ experiences:
         <ul>
           {% for position in experience.positions %}
             <li>
-              {{ gbExperiencePositionTitle(position) }}
+              {{ gbExperiencePositionTitle(merge(position, { 
+                underline: not not (position.descriptions or position.underline)
+              })) }}
               {% if position.descriptions %}
-                <ul class="list-inside list-disc pl-4">
+                <ul class="list-inside list-none">
                   {% for description in position.descriptions %}
                     {{ gbExperienceDescriptionItem(description) }}  
                   {% endfor %}
@@ -216,10 +242,17 @@ experiences:
           {% endfor %}
         </ul>
         {% if experience.descriptions %}
-          <ul class="list-inside list-disc">
-            {% for description in experience.descriptions %}
-              {{ gbExperienceDescriptionItem(description) }}  
-            {% endfor %}
+          <ul class="list-inside list-none">
+            {% for description in experience.descriptions -%}
+              {{ gbExperienceDescriptionItem(description) }}
+            {%- endfor %}
+          </ul>
+        {% endif %}
+       {% if experience.tags %}
+          <ul class="flex flex-wrap justify-center gap-1">
+            {% for tag in experience.tags -%}
+              {{ gbHighlighted({ text: tag, as: "li", class: "inline-block w-fit inline flex-shrink-0" }) }}
+            {%- endfor %}
           </ul>
         {% endif %}
       {% endfor %}
