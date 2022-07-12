@@ -6,6 +6,7 @@ module.exports = {
     "./src/**/*.njk",
     "./src/**/*.md",
     "./src/**/*.js",
+    "./shortcodes/**/*.js",
   ],
   darkMode: "class",
   theme: {
