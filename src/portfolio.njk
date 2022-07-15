@@ -82,6 +82,7 @@ experiences:
       - text: 'Built library management software using VisualBasic.NET and Microsoft Access in high school.'
 ---
 {% from "macros/highlighted.njk" import gbHighlighted %}
+{% from "macros/button.njk" import gbButton %}
 
 {% macro gbExperienceDateRange(props) %}
   {%- set range = (props.start or "") + " - " + (props.end or "") -%}
@@ -287,7 +288,12 @@ experiences:
           </div>
 
           <div class="text-right">
-            <button type="submit" class="h-8 px-2 w-32 bg-terniary border rounded-sm border-solid border-accent focus:outline-none focus:border-accent-secondary">Send</button>
+            {{ gbButton({
+              text: "Send",
+              attributes: {
+                type: "submit"
+              }
+            }) }}
           </div>
         </div>
       </form>

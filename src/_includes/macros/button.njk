@@ -1,0 +1,36 @@
+{% macro gbButton(props) %}
+  {%- set tag = props.as or "button" -%}
+
+  {%- set attributes -%}
+    {% for attribute, value in props.attributes -%} 
+      {{attribute}}="{{value}}"
+    {%- endfor %}
+  {%- endset -%}
+
+  {%- set content -%}
+    {% if caller %}
+      {{ caller() }}
+    {% elif props.text %}
+      {{ props.text }}
+    {% elif props.html %}
+      {{ props.html | safe }}
+    {% elif props.render %}
+      {{ props.render | render | safe }}
+    {% endif %}
+  {%- endset -%}
+
+  {%- set classNames = "h-8 px-2 rounded-sm border border-solid border-accent focus:outline-none focus:border-accent-secondary bg-terniary " %}
+  {% if props.class %}
+    {% set classNames = classNames + props.class %}
+  {% endif %}
+
+  {% if props.fullWidth %}
+    {% set classNames = classNames + " w-full" %}
+  {% else %}
+    {% set classNames = classNames + " w-32" %}
+  {% endif %}
+
+  <{{ tag }} class="{{ classNames }}" {{ attributes | safe }}>
+    {{ content }}
+  </{{ tag }}>
+{% endmacro %}
