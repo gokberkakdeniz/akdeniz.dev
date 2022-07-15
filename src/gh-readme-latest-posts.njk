@@ -1,0 +1,7 @@
+---
+permalink: gh-readme-latest-posts.md
+---
+#### Latest blog posts
+{% for post in collections.post | rejectmattr("data", "hidden") | reverse | slice(5) %}
+  - [{{ post.data.title }} ({{ post.data.date | dateFormat }})](https://akdeniz.dev{{ post.url }})
+{%- endfor %}
