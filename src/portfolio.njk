@@ -3,11 +3,10 @@ layout: default
 title: Portfolio
 description: The portfolio of Gökberk Akdeniz
 keywords: portfolio, about, cv, resume, software engineer, izmir, turkey, computer engineer, developer, fullstack, backend, frontend
-company:
-  name: Jotform
-  url: https://www.jotform.com/
 experiences:
   - company: Jotform
+    id: jotform
+    url: https://www.jotform.com/
     start: "Oct 2021"
     tags:
       - react
@@ -27,6 +26,7 @@ experiences:
         start: "Jul 2021"
         end: "Sep 2021"
   - company: Delta Smart Technologies
+    id: deltasmart
     start: "Jul 2020"
     end: "Oct 2021"
     tags:
@@ -69,7 +69,6 @@ experiences:
         end: "Oct 2020"
         descriptions:
           - html: 'Developed rich administrator panels using TypeScript, ReactJS, Redux, and Redux-Saga.'
-          - text: 'Being part of a scrum team of 5 members.'
   - company: Outside Work
     descriptions:
       - html: 'Ported and maintained <a href="https://addons.mozilla.org/en-US/firefox/addon/tureng-anlik-ceviri/" class="font-bold hover:underline">Tureng Anlık Çeviri</a> (1200 users and 4.5 stars) add-on to Mozilla Firefox from Google Chrome.'
@@ -93,8 +92,15 @@ experiences:
 {% endmacro %}
 
 {% macro gbExperienceTitle(props) %}
-  <div class="flex justify-between border-b border-current">
-    <h2 class="text-xl font-bold uppercase">{{ props.company }}</h2>
+  {%- set id = "experience-" + props.id %}
+  <div class="flex justify-between border-b border-current" {{ "id=" + id if props.id }}>
+    <h2 class="text-xl font-bold uppercase">
+      {% if props.id and props.withLink %}
+        <a href="#{{ id }}">{{ props.company }}</a>
+      {% else -%}
+        {{ props.company }}
+      {%- endif -%}
+    </h2>
     <h2 class="text-xl font-bold">{{ gbExperienceDateRange(props) }}</h2>
   </div>
 {% endmacro %}
@@ -144,7 +150,7 @@ experiences:
         I'm Software Engineer located in İzmir, Turkey.
         <br />
         I work as a {{ gbHighlighted({ text: "Full Stack Developer" }) }}
-        at <a class="font-bold hover:underline" href="{{ company.url }}">{{ company.name }}</a>.
+        at <a class="font-bold hover:underline" href="{{ experiences[0].url }}">{{ experiences[0].company }}</a>.
       </p>
       <p>
         I graduated from 
@@ -248,7 +254,7 @@ experiences:
             {%- endfor %}
           </ul>
         {% endif %}
-       {% if experience.tags %}
+        {% if experience.tags %}
           <ul class="flex flex-wrap justify-center gap-1">
             {% for tag in experience.tags -%}
               {{ gbHighlighted({ text: tag, as: "li", class: "inline-block w-fit inline flex-shrink-0" }) }}
