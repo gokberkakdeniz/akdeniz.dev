@@ -6,6 +6,7 @@ scripts:
   - https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js
   - /js/noise-gradient.js
 ---
+{% from "macros/button.njk" import gbButton %}
 
 <div style="max-width: 300px;">
   <label for="dominant_color">Dominant color</label>
@@ -28,6 +29,11 @@ scripts:
   <br/>
 
   <div id="sketch-holder" class="my-4 bg-secondary" style="width:300; height:300;"></div>
-
-  <button onclick="redraw();" class="h-8 px-2 w-full rounded-sm border border-solid border-accent focus:outline-none focus:border-accent-secondary bg-terniary">Render</button>
+  {{ gbButton({
+    text: "Render",
+    fullWidth: true,
+    attributes: {
+      onclick: "redraw();"
+    }
+  }) }}
 </div>

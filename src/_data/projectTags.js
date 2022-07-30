@@ -3,6 +3,8 @@ module.exports = {
   "cli": "text-red-500 border-red-500",
   "linux": "text-yellow-500 border-yellow-500",
   "react": "text-blue-300 border-blue-300",
+  "redux": "text-purple-500 border-purple-500",
+  "redux-saga": "text-green-500 border-green-500",
   "javascript": "text-yellow-300 border-yellow-300",
   "typescript": "text-blue-500 border-blue-500",
   "bootstrap": "text-purple-400 border-purple-400",

@@ -3,7 +3,133 @@ layout: default
 title: Portfolio
 description: The portfolio of Gökberk Akdeniz
 keywords: portfolio, about, cv, resume, software engineer, izmir, turkey, computer engineer, developer, fullstack, backend, frontend
+experiences:
+  - company: Jotform
+    id: jotform
+    url: https://www.jotform.com/
+    start: "Oct 2021"
+    tags:
+      - react
+      - redux
+      - redux-saga
+      - php
+      - mysql
+    positions:
+      - title: "Junior Fullstack Developer"
+        start: "Aug 2022"
+      - title: "Fullstack Support Engineer"
+        type: Part-time
+        start: "Oct 2021"
+        end: "Aug 2022"
+      - title: "Fullstack Developer"
+        type: Intern
+        start: "Jul 2021"
+        end: "Sep 2021"
+  - company: Delta Smart Technologies
+    id: deltasmart
+    start: "Jul 2020"
+    end: "Oct 2021"
+    tags:
+      - react
+      - redux
+      - redux-saga
+      - typescript
+      - java
+      - spring
+      - aws
+      - mariadb
+    positions:
+      - title: "Lead Developer"
+        type: Part-time
+        start: "Jun 2021"
+        end: "Oct 2021"
+        descriptions:
+          - text: Lead 3-member team (mobile, front-end, and back-end developer).
+          - text: Designed the architecture and infrastructure of car park management software for IZELMAN.
+          - text: Built API using Spring Boot, MariaDB, Hibernate, and Flyway.
+          - text: Built frontend with TypeScript, ReactJS, Redux, and Redux-Saga.
+      - title: "Full Stack Developer"
+        type: Part-time
+        start: "Feb 2021"
+        end: "Jun 2021"
+        descriptions:
+          - text: 'Maintained ASP.NET C# Web APIs.'
+          - text:  >-
+              Built serverless notification system with NodeJS using AWS Lambda, EventBridge, and OneSignal. 
+              Used jest.js for testing, gulp.js for bundling.
+          - text: 'Wrote bash/python scripts to automate the creation of large amounts of geographic data.'
+      - title: "Frontend Developer"
+        type: Part-time
+        start: "Oct 2020"
+        end: "Feb 2021"
+        underline: true
+      - title: "Frontend Developer"
+        type: Intern
+        start: "Jul 2020"
+        end: "Oct 2020"
+        descriptions:
+          - html: 'Developed rich administrator panels using TypeScript, ReactJS, Redux, and Redux-Saga.'
+  - company: Outside Work
+    descriptions:
+      - html: 'Ported and maintained <a href="https://addons.mozilla.org/en-US/firefox/addon/tureng-anlik-ceviri/" class="font-bold hover:underline">Tureng Anlık Çeviri</a> (1200 users and 4.5 stars) add-on to Mozilla Firefox from Google Chrome.'
+      - html: 'Developed and maintained an unofficial <a href="https://github.com/gokberkakdeniz/whats-up-darkness" class="font-bold hover:underline">WhatsApp desktop client</a> using ElectronJS for a year.'
+      - html: 'Built <a href="https://irl.akdeniz.dev" class="font-bold hover:underline">IZTECH RoboLeague&lsquo;20 website</a> using ReactJS and Bootstrap.'
+      - html: 'Built <a href="https://github.com/gokberkakdeniz/iztechbot" class="font-bold hover:underline">IZTECH cafeteria Telegram bot</a> to track daily cafeteria menu.'
+      - html: 'Built this website using Nunjucks template engine, Tailwind CSS, Eleventy static site generator, and plain JavaScript.'
+      - html: 'See the <a href="/projects" class="font-bold hover:underline">projects</a> page for more details.'
+  - company: Other Things
+    descriptions:
+      - text: 'Built library management software using VisualBasic.NET and Microsoft Access in high school.'
 ---
+{% from "macros/highlighted.njk" import gbHighlighted %}
+{% from "macros/button.njk" import gbButton %}
+
+{% macro gbExperienceDateRange(props) %}
+  {%- set range = (props.start or "") + " - " + (props.end or "") -%}
+  {% if range | length == 3 %}
+    {% set range = "" %}
+  {% endif -%}
+  {{ range }}
+{% endmacro %}
+
+{% macro gbExperienceTitle(props) %}
+  {%- set id = "experience-" + props.id %}
+  <div class="flex justify-between border-b border-current" {{ "id=" + id if props.id }}>
+    <h2 class="text-xl font-bold uppercase">
+      {% if props.id and props.withLink %}
+        <a href="#{{ id }}">{{ props.company }}</a>
+      {% else -%}
+        {{ props.company }}
+      {%- endif -%}
+    </h2>
+    <h2 class="text-xl font-bold">{{ gbExperienceDateRange(props) }}</h2>
+  </div>
+{% endmacro %}
+
+{% macro gbExperiencePositionTitle(props) %}
+  <div class="inline-block w-full font-bold">
+    <h3 class="inline float-left {{ "border-b border-current" if props.underline }}">
+      {{ props.title }}
+      {%- if props.type -%}
+        , <span class="italic font-normal">{{ props.type }}</span>
+      {% endif %}
+    </h3>
+    <h3 class="inline float-right">{{ gbExperienceDateRange(props) }}</h3>
+  </div>
+{% endmacro %}
+
+{% macro gbExperienceDescriptionItem(props) %}
+  <li>
+    {%- if props.text -%}
+      {{ props.text }}
+    {%- elif props.html -%}
+      {{ props.html | safe }}
+    {%- elif props.render -%}
+      {{ props.render | render | safe }}
+    {%- endif -%}
+  </li>
+{% endmacro %}
+
 <div class="flex flex-col space-y-4">
   <div class="mx-auto">
     <img src="/images/me.jpg" alt="my picture" class="rounded-full border-4 border-solid border-accent mx-auto my-4"/>
@@ -13,30 +139,37 @@ keywords: portfolio, about, cv, resume, software engineer, izmir, turkey, comput
         <div class="mx-auto" style="width: 300px;"></div>
         <div class="mx-auto" style="width: 300px;"></div>
       </div>
-      <div class="mx-auto">Computer engineering student, Software Developer in İzmir</div>
+      <div class="mx-auto">Software Engineer in İzmir, Turkey.</div>
     </div>
   </div>
   <div class="text-center font-semibold text-2xl font-heading uppercase">
     <h1 class="sideline">About Me</h1>
   </div>
-  <div class="flex flex-col lg:flex-row space-x-4">
+  <div class="flex flex-col lg:flex-row lg:space-x-4">
     <div class="w-full flex flex-col space-y-2">
       <p>
-        I'm a fourth year computer engineering student at IZTECH. 
-        I'm also a Software Developer located in İzmir.
-        I work as a Full Stack Developer.
+        I'm Software Engineer located in İzmir, Turkey.
+        <br />
+        I work as a {{ gbHighlighted({ text: "Full Stack Developer" }) }}
+        at <a class="font-bold hover:underline" href="{{ experiences[0].url }}">{{ experiences[0].company }}</a>.
+      </p>
+      <p>
+        I graduated from 
+        <a href="https://en.iyte.edu.tr/" title="Izmir Institute of Technology" class="font-bold hover:underline">IZTECH</a>
+        with B.Sc. in Computer Engineering as {{ gbHighlighted({ text: "the highest-ranked student in the Institute" }) }}
+        in 2017 (GPA: 3.86).
       </p>
       <p>
         I also spend my outside time experimenting with new technologies. 
       </p>
-      <p>
+      {# <p>
         I've taught C programming language to newcomers within IEEE IZTECH for 4 weeks. 
         I prepared
         <a href="https://iztech-comsoc.github.io/" class="font-bold hover:underline">materials</a>
         to make them understand easier.
-      </p>
+      </p> #}
       <p>
-        See <a href="https://www.linkedin.com/in/gokberkakdeniz/" class="font-bold hover:underline">my LinkedIn profile</a> for more details.
+        See my <a href="https://www.linkedin.com/in/gokberkakdeniz/" class="font-bold hover:underline">LinkedIn</a> profile for more details.
       </p>
     </div>
     <div class="w-full flex flex-col space-y-2">
@@ -45,23 +178,22 @@ keywords: portfolio, about, cv, resume, software engineer, izmir, turkey, comput
         <li>Had a solid theoric background</li>
         <li>Linux and open-source enthusiast</li>
         <li>Curious to understand how and why things work</li>
-        <li>
+        {# <li>
           Awarded second place with my <a href="https://github.com/gokberkakdeniz/hack4art-2019-redesign" class="font-bold hover:underline">teammates</a>
           in <a href="https://www.hack4art.com/" class="font-bold hover:underline">Hack4art</a>
         </li>
         <li>Led the technical team of <a href="http://codeofduty.iyte.edu.tr/" class="font-bold hover:underline">Code of Duty 2020</a>. 
           Prepared questions, contest platforms and made a presentation to companies interested in sponsorship.
-        </li>
+        </li> #}
       </ul>
     </div>
   </div>
 
-  <div class="text-center font-semibold text-2xl font-heading uppercase">
-    <h1 class="sideline">Interests</h1>
-  </div>
-  <div class="flex flex-col lg:flex-row space-x-4">
+  <div class="flex flex-col lg:flex-row lg:space-x-4">
     <div class="w-full flex flex-col space-y-2">
-      <h2 class="font-semibold text-xl">My personal interests include:</h2>
+      <div class="text-center font-semibold text-2xl font-heading uppercase">
+        <h1 class="sideline">Interests</h1>
+      </div>
 
       <p>
         <span class="font-semibold">Software Development</span>
@@ -95,52 +227,42 @@ keywords: portfolio, about, cv, resume, software engineer, izmir, turkey, comput
       </p>
     </div>
     <div class="w-full flex flex-col space-y-2">
-      <h2 class="text-xl font-bold uppercase">Jotform</h2>
-      <ul class="list-inside list-disc">
-        <!-- TODO --->
-        <li>Part-time Fullstack Support Engineer</li>
-      </ul>
-
-      <h2 class="text-xl font-bold uppercase">Delta Smart Technologies</h2>
-      <ul class="list-inside list-disc">
-        <li>Built rich <a href="https://panel.pincident.app/" title="Example: Pincident Public (under development)" class="font-bold">administrator panels</a>
-        using TypeScript, ReactJS, and Redux.</li>
-        <li>Maintained ASP.NET C# Web APIs.</li>
-        <li>Built serverless notification system with NodeJS using AWS Lambda, EventBridge, and OneSignal.</li>
-        <li>Used jest.js to test lambda function, gulp.js to automate deploying to AWS Lambda.</li>
-        <li>Used AWS and Azure.</li>
-        <li>Closely collaborated with backend developer.</li>
-        <li>Being part of a scrum team of 5 members.</li>
-        <li>Mentoring new trainees to clarify their questions and to make them adapted to the team.</li>
-        <li>Wrote bash/python scripts to automate the creation of large amounts of geographic data.</li>
-      </ul>
-
-      <h2 class="text-xl font-bold uppercase">Outside Work</h2>
-      <ul class="list-inside list-disc">
-        <li>
-          Ported and maintained <a href="https://addons.mozilla.org/en-US/firefox/addon/tureng-anlik-ceviri/" class="font-bold hover:underline">Tureng Anlık Çeviri</a> (1200 users and 4.5 stars) add-on to Mozilla Firefox from Google Chrome.
-        </li>
-        <li>
-          Developed and maintained an unofficial <a href="https://github.com/gokberkakdeniz/whats-up-darkness" class="font-bold hover:underline">WhatsApp desktop client</a> using ElectronJS for a year.
-        </li>
-        <li>
-          Built <a href="https://irl.akdeniz.dev" class="font-bold hover:underline">IZTECH RoboLeague'20 website</a> using ReactJS and Bootstrap.
-        </li>
-        <li>
-          Built <a href="https://github.com/gokberkakdeniz/iztechbot" class="font-bold hover:underline">IZTECH cafeteria Telegram bot</a> to track daily cafeteria menu.
-        </li>
-        <li>
-          Built this website using Nunjucks template engine, Tailwind CSS, Eleventy static site generator, and plain JavaScript.
-        </li>
-        <li class="list-none mt-1">
-          See the <a href="/projects" class="font-bold hover:underline">projects</a> page for more details.
-        </li>
-      </ul>
-
-      <h2 class="text-xl font-bold uppercase">Other Things</h2>
-      <ul class="list-inside list-disc">
-        <li>Built library management software using VisualBasic.NET and Microsoft Access in high school.</li>
-      </ul>
+      <div class="text-center font-semibold text-2xl font-heading uppercase">
+        <h1 class="sideline">Experiences</h1>
+      </div>
+      {% for experience in experiences %}
+        {{ gbExperienceTitle(experience) }}
+        <ul>
+          {% for position in experience.positions %}
+            <li>
+              {{ gbExperiencePositionTitle(merge(position, { 
+                underline: not not (position.descriptions or position.underline)
+              })) }}
+              {% if position.descriptions %}
+                <ul class="list-inside list-none">
+                  {% for description in position.descriptions %}
+                    {{ gbExperienceDescriptionItem(description) }}  
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+        {% if experience.descriptions %}
+          <ul class="list-inside list-none">
+            {% for description in experience.descriptions -%}
+              {{ gbExperienceDescriptionItem(description) }}
+            {%- endfor %}
+          </ul>
+        {% endif %}
+        {% if experience.tags %}
+          <ul class="flex flex-wrap justify-center gap-1">
+            {% for tag in experience.tags -%}
+              {{ gbHighlighted({ text: tag, as: "li", class: "inline-block w-fit inline flex-shrink-0" }) }}
+            {%- endfor %}
+          </ul>
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
   <div class="text-center font-semibold text-2xl font-heading uppercase">
@@ -166,7 +288,12 @@ keywords: portfolio, about, cv, resume, software engineer, izmir, turkey, comput
           </div>
 
           <div class="text-right">
-            <button type="submit" class="h-8 px-2 w-32 bg-terniary border rounded-sm border-solid border-accent focus:outline-none focus:border-accent-secondary">Send</button>
+            {{ gbButton({
+              text: "Send",
+              attributes: {
+                type: "submit"
+              }
+            }) }}
           </div>
         </div>
       </form>

@@ -38,13 +38,13 @@ function setIcon(theme) {
   }
 }
 
-function setTheme(theme) {
+function setTheme(theme, persist = true) {
   const root = document.documentElement;
 
   root.classList.remove(theme === "dark" ? "light" : "dark");
   root.classList.add(theme);
 
-  localStorage.setItem("theme", theme);
+  if (persist) localStorage.setItem("theme", theme);
 }
 
 function toggleTheme() {
@@ -54,7 +54,7 @@ function toggleTheme() {
 }
 
 const theme = getTheme();
-setTheme(theme);
+setTheme(theme, false);
 
 waitSunAndMoon(function() {
   setIcon(theme);
