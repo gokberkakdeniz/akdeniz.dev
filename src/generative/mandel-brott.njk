@@ -1,0 +1,94 @@
+---
+title: Mandelbrot Set
+description: Mandelbrot Set visualization with plain JavaScript
+date: 2022-09-04
+---
+<div class="min-w-full">
+  <canvas id="mb-canvas" class="my-4 bg-secondary"></canvas>
+  <figure>
+    <canvas id="mb-palette" class="my-4 bg-secondary"></canvas>
+    <figcaption class="text-center">
+      The color palette is taken from
+      <a class="italic" href="https://stackoverflow.com/questions/16500656/which-color-gradient-is-used-to-color-mandelbrot-in-wikipedia">
+        Stack Overflow: Which color gradient is used to color mandelbrot in wikipedia?
+      </a>
+    </figcaption>
+  </figure>
+</div>
+<script>
+  const MAX_ITER = 30;
+  const RE_START = -2;
+  const RE_END = 1;
+  const IM_START = -1;
+  const IM_END = 1;
+  const COLORS = [
+    "rgb(66, 30, 15)",
+    "rgb(25, 7, 26)",
+    "rgb(9, 1, 47)",
+    "rgb(4, 4, 73)",
+    "rgb(0, 7, 100)",
+    "rgb(12, 44, 138)",
+    "rgb(24, 82, 177)",
+    "rgb(57, 125, 209)",
+    "rgb(134, 181, 229)",
+    "rgb(211, 236, 248)",
+    "rgb(241, 233, 191)",
+    "rgb(248, 201, 95)",
+    "rgb(255, 170, 0)",
+    "rgb(204, 128, 0)",
+    "rgb(153, 87, 0)",
+    "rgb(106, 52, 3)"
+  ];
+
+  const palette = document.getElementById('mb-palette');
+  palette.width = palette.parentElement.offsetWidth;
+  palette.height = 100;
+  const paletteCtx = palette.getContext('2d');
+  const paletteGradient = paletteCtx.createLinearGradient(0, 0, palette.width, palette.height / 2);
+  COLORS.forEach((c, i) => paletteGradient.addColorStop(i / COLORS.length, c));
+  paletteCtx.fillStyle = paletteGradient;
+  paletteCtx.fillRect(0, 0, palette.width, palette.height / 2);
+  COLORS.forEach((c, i) => {
+    paletteCtx.fillStyle = c;
+    paletteCtx.fillRect((i / COLORS.length) * palette.width, palette.height / 2, palette.width, palette.height / 2);
+  });
+  const paletteData = paletteCtx.getImageData(0, 0, palette.width, 1);
+
+  const getColor = (iter) => {
+    const i = Math.floor(palette.width * iter / MAX_ITER) * 4;
+    return `rgb(${paletteData.data[i]}, ${paletteData.data[i+1]}, ${paletteData.data[i+2]})`;
+  }
+
+  const canvas = document.getElementById('mb-canvas');
+  canvas.width = canvas.parentElement.offsetWidth;
+  canvas.height = canvas.width * 2 / 3;
+  const ctx = canvas.getContext('2d');
+
+  const mandelBrott = (a, b, iterCount = MAX_ITER) => {
+    let za = 0,
+      zb = 0;
+    let n = 0;
+
+    while (n < iterCount && za * za + zb * zb <= 4) {
+      const zaNew = za * za - zb * zb + a;
+      const zbNew = 2 * za * zb + b;
+      za = zaNew;
+      zb = zbNew;
+      n++;
+    }
+
+    return n;
+  }
+
+  for (let y = 0; y < canvas.height; y++) {
+    for (let x = 0; x < canvas.width; x++) {
+      const ca = RE_START + (x / canvas.width) * (RE_END - RE_START);
+      const cb = IM_START + (y / canvas.height) * (IM_END - IM_START);
+      const iter = mandelBrott(ca, cb);
+      ctx.fillStyle = iter < MAX_ITER && iter > 0
+        ? getColor(iter) //COLORS[iter % COLORS.length]
+        : "#000000";
+      ctx.fillRect(x, y, 1, 1)
+    }
+  }
+</script>
