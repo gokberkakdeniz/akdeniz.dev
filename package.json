@@ -9,9 +9,9 @@
   "scripts": {
     "serve-html": "ELEVENTY_ENV=dev eleventy --serve",
     "serve-css": "postcss --verbose src/_includes/css/tailwind.css -o dist/tailwind.css --watch",
-    "prestart": "yarn clean",
+    "prestart": "pnpm clean",
     "start": "run-p serve-css serve-html",
-    "prebuild": "yarn clean",
+    "prebuild": "pnpm clean",
     "build-css": "NODE_ENV=development postcss src/_includes/css/tailwind.css -o dist/tailwind.css",
     "build-html": "ELEVENTY_ENV=dev eleventy",
     "build-css:prod": "NODE_ENV=production postcss src/_includes/css/tailwind.css -o dist/tailwind.css",
