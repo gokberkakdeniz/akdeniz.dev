@@ -45,6 +45,12 @@
       {%- endcall %}
     {%- endcall %}
 
+    {% call NavbarItem('races', '/races') -%}
+      {% call NavbarSvgIcon() -%}
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/>
+      {%- endcall %}
+    {%- endcall %}
+
     {% call NavbarItem('portfolio', '/portfolio') -%}
       {% call NavbarSvgIcon() -%}
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>

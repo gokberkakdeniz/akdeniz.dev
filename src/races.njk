@@ -1,0 +1,90 @@
+---
+layout: default
+title: Races
+description: Running races Gökberk Akdeniz has participated in
+keywords: races, running, marathon, half marathon, 10k, 5k, race results
+races:
+  - name: "6. Urla'da BirİZ Koşusu"
+    date: "2026/09/27"
+    distance: "10K"
+    time: "00:51:36"
+    urls:
+      - title: "Strava"
+        url: "https://www.strava.com/activities/20345988496"
+      - title: "Race Result"
+        url: "https://my.raceresult.com/426116/details?pid=865"
+  - name: "14. Uluslararası 9 Eylül İzmir Yarı Maratonu"
+    date: "2026/09/13"
+    distance: "21K"
+    time: "01:58:26"
+    urls:
+      - title: "Strava"
+        url: "https://www.strava.com/activities/20152869706/overview"
+      - title: "Race Result"
+        url: "https://my.raceresult.com/422397/details?pid=1247"
+      - title: "Results (PDF)"
+        url: "https://www.maratonizmir.org/YuklenenDosyalar/Sonuclar/14092026_011735_ResultListsKADINERKEKGENEL.pdf"
+  - name: "Solomon Çeşme Yarı Maratonu"
+    date: "2026/05/10"
+    distance: "10K"
+    time: "00:54:22"
+    urls:
+      - title: "Strava"
+        url: "https://www.strava.com/activities/18447406318/overview"
+      - title: "Race Result"
+        url: "https://argeustiming.com/results/g-live/g-live.html?f=../cesmeyarimaratonu/2026/cesmeym2026.clax"
+---
+{% from "macros/highlighted.njk" import gbHighlighted %}
+
+{% macro gbRaceLinkIcon(url) %}
+  <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4 inline">
+    {% if url.url.toLowerCase().endsWith('.pdf') %}
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+    {% elif url.url.includes('strava.com') %}
+      <path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/>
+    {% elif url.url.includes('raceresult.com') or url.url.includes('argeustiming.com') %}
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    {% else %}
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+    {% endif %}
+  </svg>
+{% endmacro %}
+
+<div class="mb-4">
+  <p>Running races I've participated in.</p>
+</div>
+
+<div class="overflow-x-auto">
+  <table class="w-full text-left border-collapse">
+    <thead>
+      <tr class="border-b-2 border-current">
+        <th class="py-1 px-2 font-bold uppercase">#</th>
+        <th class="py-1 px-2 font-bold uppercase">Date</th>
+        <th class="py-1 px-2 font-bold uppercase">Race</th>
+        <th class="py-1 px-2 font-bold uppercase">Distance</th>
+        <th class="py-1 px-2 font-bold uppercase">Finish Time</th>
+        <th class="py-1 px-2 font-bold uppercase">Links</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for race in races %}
+        <tr class="border-b border-dotted border-accent">
+          <td class="py-1 px-2">{{ loop.revindex }}</td>
+          <td class="py-1 px-2">{{ race.date }}</td>
+          <td class="py-1 px-2 font-heading font-bold">{{ race.name }}</td>
+          <td class="py-1 px-2">{{ gbHighlighted({ text: race.distance }) }}</td>
+          <td class="py-1 px-2">{{ race.time }}</td>
+          <td class="py-1 px-2 text-accent-secondary">
+            <div class="inline-flex items-center gap-2">
+              {% for url in race.urls %}
+                <a href="{{ url.url }}" title="{{ url.title }}" target="_blank" rel="noopener">
+                  {{ gbRaceLinkIcon(url) }}
+                </a>
+              {% endfor %}
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
