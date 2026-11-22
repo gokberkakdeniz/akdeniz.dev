@@ -6,6 +6,7 @@
   "author": "Gökberk AKDENİZ <gokberkakdeniz@hotmail.com>",
   "license": "SEE LICENSE IN LICENSE",
   "private": "true",
+  "packageManager": "pnpm@12.21.0",
   "scripts": {
     "serve-html": "ELEVENTY_ENV=dev eleventy --serve",
     "serve-css": "postcss --verbose src/_includes/css/tailwind.css -o dist/tailwind.css --watch",
